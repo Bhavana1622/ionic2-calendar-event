@@ -1,0 +1,30 @@
+// To display different colors for different events in ionic2-calendar
+//You need a template for the ionic2-calendar that accepts your events array 
+//Add this to your HTML code
+//all you have to do is, add ngStyle tag that accepts the colors for different events
+
+//[ngStyle]="{'color': obj.eventColor}"
+  
+  
+  
+  
+  
+<template  #template let-view="view"  let-row="row" let-col="col" >
+            <div  *ngFor="let obj of view.dates[row*7+col].events"  >
+                <p [ngStyle]="{'color': obj.eventColor}">{{view.dates[row*7+col].label}}</p>
+            </div> 
+</template>
+
+
+
+<calendar   
+ [monthviewDisplayEventTemplate]="template"
+[eventSource]="eventSource"
+[calendarMode]="calendar.mode"
+[currentDate]="calendar.currentDate"
+[showEventDetail]="false"
+(onCurrentDateChanged)="onCurrentDateChanged($event)"
+(onEventSelected)="onEventSelected($event)"
+(onTitleChanged)="onViewTitleChanged($event)"
+(onTimeSelected)="onTimeSelected($event)"
+step="30">
